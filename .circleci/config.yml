@@ -51,6 +51,7 @@ jobs:
   yarn_build:
     docker:
       - image: cimg/node:18.20.1-browsers
+    resource_class: 2xlarge
     steps:
       - checkout
       - setup_node_modules
@@ -59,6 +60,16 @@ jobs:
           root: .
           paths:
             - build
+  
+  yarn_test:
+    docker:
+      - image: cimg/node:18.20.1-browsers
+    resource_class: 2xlarge
+    steps:
+      - checkout
+      - run:
+          name: Run Tests
+          command: yarn test
 
   download_build:
     docker: *docker
@@ -211,6 +222,9 @@ workflows:
   build_and_test:
     jobs:
       - yarn_build
+      - yarn_test:
+          requires:
+              - yarn_build 
       - process_artifacts_combined:
           requires:
             - yarn_build
