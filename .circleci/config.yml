@@ -227,9 +227,24 @@ workflows:
   build_and_test:
     jobs:
       - yarn_build
+      - build_devtools_and_process_artifacts
       - yarn_test:
           requires:
             - yarn_build
+      - run_devtools_e2e_tests:
+          requires:
+            - build_devtools_and_process_artifacts
+      - run_devtools_e2e_tests_for_versions:
+          requires:
+            - build_devtools_and_process_artifacts
+          matrix:
+            parameters:
+              version:
+                - "16.0"
+                - "16.5" # schedule package
+                - "16.8" # hooks
+                - "17.0"
+                - "18.0"
       # - process_artifacts_combined:
       #     requires:
       #       - yarn_build
