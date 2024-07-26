@@ -118,13 +118,17 @@ jobs:
           path: ./build.tgz
 
   build_devtools_and_process_artifacts:
-    docker: *docker
+    docker:
+      - image: cimg/node:18.20.1-browsers
     environment: *environment
     steps:
       - checkout
       - attach_workspace:
           at: .
       - setup_node_modules
+      - run:
+          name: Yarn install
+          command: yarn install
       - run:
           environment:
             RELEASE_CHANNEL: experimental
