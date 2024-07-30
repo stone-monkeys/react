@@ -72,7 +72,9 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: npx playwright install --with-deps chromium
       - run: |
-          cd project/compiler
+          pwd
+          cd project
+          cd compiler
           yarn workspace playground test
 
 # jobs:
