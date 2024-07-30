@@ -71,7 +71,9 @@ jobs:
       - setup_node_modules
       - run: yarn install --frozen-lockfile
       - run: npx playwright install --with-deps chromium
-      - run: yarn workspace playground test
+      - run: |
+          cd project/compiler
+          yarn workspace playground test
 
 # jobs:
 #   playground:
