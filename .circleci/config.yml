@@ -387,30 +387,30 @@ jobs:
 
 workflows:
 
-  # build_and_test:
-  #   jobs:
-  #     - yarn_build
-  #     - yarn_test:
-  #         requires:
-  #           - yarn_build
+  build_and_test:
+    jobs:
+      - yarn_build
+      - yarn_test:
+          requires:
+            - yarn_build
 
   
-  # devtools:
-  #   jobs:
-  #     - run_devtools_e2e_tests
-  #     - run_devtools_e2e_tests_for_versions:
-  #         matrix:
-  #           parameters:
-  #             version:
-  #               - "16.0"
-  #               - "16.5" # schedule package
-  #               - "16.8" # hooks
-  #               - "17.0"
-  #               - "18.0"
+  devtools:
+    jobs:
+      - run_devtools_e2e_tests
+      - run_devtools_e2e_tests_for_versions:
+          matrix:
+            parameters:
+              version:
+                - "16.0"
+                - "16.5" # schedule package
+                - "16.8" # hooks
+                - "17.0"
+                - "18.0"
 
-  # playground:
-  #   jobs:
-  #     - playground
+  playground:
+    jobs:
+      - playground
   
   rust:
     jobs:
@@ -418,22 +418,22 @@ workflows:
       - rust_lint
       - rust_build
   
-  # typescript:
-  #   jobs:
-  #    - typescript_lint
-  #    - typescript_jest
-  #    - typescript test
+  typescript:
+    jobs:
+     - typescript_lint
+     - typescript_jest
+     - typescript test
 
-  # test-fuzz:
-  #   jobs:
-  #     - test_fuzz
+  test-fuzz:
+    jobs:
+      - test_fuzz
 
-  # shared-lint:
-  #   jobs:
-  #     - prettier
-  #     - eslint
-  #     - checklicense
-  #     - test_print_warnings
+  shared-lint:
+    jobs:
+      - prettier
+      - eslint
+      - checklicense
+      - test_print_warnings
   
 
       
