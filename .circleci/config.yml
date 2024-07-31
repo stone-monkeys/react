@@ -258,6 +258,10 @@ jobs:
           keys:
             - cargo-{{ checksum "Cargo.lock" }}
       - run: |
+          sudo apt-get update
+      - run: |
+          sudo apt-get install libicu-dev
+      - run: |
           pwd
           cd compiler
           cargo test --manifest-path=Cargo.toml
@@ -290,6 +294,10 @@ jobs:
       - restore_cache:
           keys:
             - cargo-{{ checksum "Cargo.lock" }}
+      - run: |
+          sudo apt-get update
+      - run: |
+          sudo apt-get install libicu-dev
       - run: | 
           pwd
           cd compiler
