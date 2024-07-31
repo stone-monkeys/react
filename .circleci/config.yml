@@ -245,7 +245,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: |
           pwd
-          cd compiler
           yarn workspace playground test
   
 # RUST COMPILER JOBS
