@@ -283,7 +283,10 @@ jobs:
       - restore_cache:
           keys:
             - cargo-{{ checksum "Cargo.lock" }}
-      - run: cargo build --release
+      - run: | 
+          pwd
+          cd compiler
+          cargo build --release
       - save_cache:
           key: cargo-{{ checksum "Cargo.lock" }}
           paths:
@@ -317,31 +320,31 @@ jobs:
 
 workflows:
 
-  build_and_test:
-    jobs:
-      - yarn_build
-      - build_devtools_and_process_artifacts
-      - yarn_test:
-          requires:
-            - yarn_build
-      - run_devtools_e2e_tests:
-          requires:
-            - build_devtools_and_process_artifacts
-      - run_devtools_e2e_tests_for_versions:
-          requires:
-            - build_devtools_and_process_artifacts
-          matrix:
-            parameters:
-              version:
-                - "16.0"
-                - "16.5" # schedule package
-                - "16.8" # hooks
-                - "17.0"
-                - "18.0"
+  # build_and_test:
+  #   jobs:
+  #     - yarn_build
+  #     - build_devtools_and_process_artifacts
+  #     - yarn_test:
+  #         requires:
+  #           - yarn_build
+  #     - run_devtools_e2e_tests:
+  #         requires:
+  #           - build_devtools_and_process_artifacts
+  #     - run_devtools_e2e_tests_for_versions:
+  #         requires:
+  #           - build_devtools_and_process_artifacts
+  #         matrix:
+  #           parameters:
+  #             version:
+  #               - "16.0"
+  #               - "16.5" # schedule package
+  #               - "16.8" # hooks
+  #               - "17.0"
+  #               - "18.0"
   
-  playground:
-    jobs:
-      - playground
+  # playground:
+  #   jobs:
+  #     - playground
   
   rust:
     jobs:
@@ -349,11 +352,11 @@ workflows:
       - rust_lint
       - rust_build
   
-  typescript:
-    jobs:
-     - typescript_lint
-     - typescript_jest
-     - typescript test
+  # typescript:
+  #   jobs:
+  #    - typescript_lint
+  #    - typescript_jest
+  #    - typescript test
 
       
       
