@@ -277,7 +277,7 @@ jobs:
   rust_build:
     docker:
       - image: cimg/rust:1.80.0
-    working_directory: ~/project/compiler
+    working_directory: ~/project/compiler/complier
     steps:
       - checkout
       - restore_cache:
@@ -285,7 +285,6 @@ jobs:
             - cargo-{{ checksum "Cargo.lock" }}
       - run: | 
           pwd
-          cd compiler
           cargo build --release
       - save_cache:
           key: cargo-{{ checksum "Cargo.lock" }}
