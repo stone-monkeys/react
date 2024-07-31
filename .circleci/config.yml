@@ -257,7 +257,10 @@ jobs:
       - restore_cache:
           keys:
             - cargo-{{ checksum "Cargo.lock" }}
-      - run: cargo test --manifest-path=Cargo.toml
+      - run: |
+          pwd
+          cd compiler
+          cargo test --manifest-path=Cargo.toml
       - save_cache:
           key: cargo-{{ checksum "Cargo.lock" }}
           paths:
@@ -390,15 +393,15 @@ workflows:
   #               - "17.0"
   #               - "18.0"
 
-  playground:
-    jobs:
-      - playground
-  
-  # rust:
+  # playground:
   #   jobs:
-  #     - rust_test
-  #     - rust_lint
-  #     - rust_build
+  #     - playground
+  
+  rust:
+    jobs:
+      - rust_test
+      - rust_lint
+      - rust_build
   
   # typescript:
   #   jobs:
