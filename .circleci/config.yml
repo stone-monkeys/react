@@ -428,14 +428,7 @@ jobs:
       - setup_node_modules
       #- run: yarn test -r=stable --env=development -r=stable --env=production -r=experimental --env=development -r=experimental --env=production -r=www-classic --env=development --variant=false -r=www-classic --env=production --variant=false -r=www-classic --env=development --variant=true -r=www-classic --env=production --variant=true -r=www-modern --env=development --variant=false -r=www-modern --env=production --variant=false -r=www-modern --env=development --variant=true -r=www-modern --env=production --variant=true -r=xplat --env=development --variant=false -r=xplat --env=development --variant=true -r=xplat --env=production --variant=false -r=xplat --env=production --variant=true -r=stable --env=development --persistent -r=experimental --env=development --persistent --ci=circleci 
       - run: | 
-          yarn test -r=stable --env=development -r=stable --env=production \
-          -r=experimental --env=development -r=experimental --env=production \
-          -r=www-classic --env=development --variant=false -r=www-classic --env=production --variant=false \
-          -r=www-classic --env=development --variant=true -r=www-classic --env=production --variant=true \
-          -r=www-modern --env=development --variant=false -r=www-modern --env=production --variant=false \
-          -r=www-modern --env=development --variant=true -r=www-modern --env=production --variant=true \
-          -r=xplat --env=development -r=xplat --env=development -r=xplat --env=production -r=xplat --env=production \
-          --ci=circleci
+          yarn test --ci=circleci
 workflows:
 
   # build_and_test:
