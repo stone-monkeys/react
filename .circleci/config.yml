@@ -391,6 +391,29 @@ jobs:
       - checkout
       - setup_node_modules
       - run: node ./scripts/tasks/flow-ci
+  
+  discover_flow_inline_configs:
+    docker:
+      - image: cimg/node:18.20.1-browsers
+    steps:
+      - checkout
+      - setup_node_modules
+      - run: |
+          const inlinedHostConfigs = require('./scripts/shared/inlinedHostConfigs.js');
+          return inlinedHostConfigs.map(config => config.shortName);
+
+    # name: Discover flow inline configs
+    # runs-on: ubuntu-latest
+    # outputs:
+    #   matrix: ${{ steps.set-matrix.outputs.result }}
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - uses: actions/github-script@v7
+    #     id: set-matrix
+    #     with:
+    #       script: |
+    #         const inlinedHostConfigs = require('./scripts/shared/inlinedHostConfigs.js');
+    #         return inlinedHostConfigs.map(config => config.shortName);
     
 
 workflows:
@@ -446,6 +469,7 @@ workflows:
   runtime-build-and-test:
     jobs:
       - flow
+      - discover_flow_inline_configs
   
 
       
