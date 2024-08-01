@@ -439,43 +439,22 @@ jobs:
       - run: yarn build --ci=circleci
       - run: yarn lint-build
       - run: ls -R build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - build
   
   test_build:
     docker:
       - image: cimg/node:18.20.1-browsers
     steps:
       - checkout
-      - attach_workspace:
-          at: /workspace
       - setup_node_modules
       - restore_cache:
           keys:
             - v1-build-{{ checksum "src/" }}
             - v1-build-
       - run: yarn test --ci=github
-      - store_artifacts:
-          path: build
-          destination: build
-  
-  check_error_codes:
-    docker:
-      - image: cimg/node:18.20.1-browsers
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /workspace
-      - setup_node_modules
-      - run:
-          name: Install dependencies
-          command: yarn install
       - run: |
           yarn extract-errors
           git diff --quiet || (echo "Found unminified errors. Either update the error codes map or disable error minification for the affected build, if appropriate." && false)
-
+  
 workflows:
 
   # build_and_test:
@@ -537,9 +516,6 @@ workflows:
       - test_build:
           requires:
             - build_and_lint
-      - check_error_codes:
-          requires:
-            - test_build
   
 
       
