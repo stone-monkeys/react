@@ -343,7 +343,9 @@ jobs:
       - run: | 
           cd ~/project/compiler/packages/babel-plugin-react-compiler
           yarn install
-      - run: yarn workspace babel-plugin-react-compiler lint
+      - run: | 
+          cd ~/project/compiler/packages/babel-plugin-react-compiler
+          yarn workspace babel-plugin-react-compiler lint
   
   typescript_jest:
     docker:
@@ -354,7 +356,9 @@ jobs:
       - run: |
           cd ~/project/compiler/packages/babel-plugin-react-compiler
           yarn install
-      - run: yarn workspace babel-plugin-react-compiler jest
+      - run: | 
+          cd ~/project/compiler/packages/babel-plugin-react-compiler
+          yarn workspace babel-plugin-react-compiler jest
   
   typescript test:
     docker:
