@@ -241,14 +241,21 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - setup_node_modules
-      - run: yarn install --frozen-lockfile
-      - run: npx playwright install --with-deps chromium
+      - run: | 
+          cd compiler
+          yarn add playwright
       - run: |
           pwd
-          cd compiler
+          yarn install --frozen-lockfile
+      - run: | 
+          pwd
+          npx playwright install --with-deps chromium
+      - run: |
+          pwd
           yarn install
+      - run: |
+          pwd
           yarn playwright install
-          yarn workspace playground test
       - run: | 
           pwd
           yarn workspace playground test
