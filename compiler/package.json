@@ -46,7 +46,8 @@
     "rollup-plugin-prettier": "^4.1.1",
     "typescript": "^5.4.3",
     "wait-on": "^7.2.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "playwright": "^1.24.0"
   },
   "resolutions": {
     "react-is": "19.0.0-beta-b498834eab-20240506"
