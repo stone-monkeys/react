@@ -497,9 +497,9 @@ workflows:
   #               - "17.0"
   #               - "18.0"
 
-  playground:
-    jobs:
-      - playground
+  # playground:
+  #   jobs:
+  #     - playground
   
   # rust:
   #   jobs:
@@ -507,11 +507,11 @@ workflows:
   #     - rust_lint
   #     - rust_build
   
-  # typescript:
-  #   jobs:
-  #    - typescript_lint
-  #    - typescript_jest
-  #    - typescript test
+  typescript:
+    jobs:
+     - typescript_lint
+     - typescript_jest
+     - typescript test
 
   # test-fuzz:
   #   jobs:
