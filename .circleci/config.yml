@@ -512,9 +512,9 @@ workflows:
   #               - "17.0"
   #               - "18.0"
 
-  # playground:
-  #   jobs:
-  #     - playground
+  playground:
+    jobs:
+      - playground
   
   # rust:
   #   jobs:
