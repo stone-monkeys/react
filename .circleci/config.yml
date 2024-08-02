@@ -247,7 +247,10 @@ jobs:
           pwd
           cd compiler
           yarn install
-      - run: yarn workspace playground test
+          yarn workspace playground test
+      - run: | 
+          pwd
+          yarn workspace playground test
   
 # RUST COMPILER JOBS
   rust_test:
