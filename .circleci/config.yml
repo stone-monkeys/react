@@ -243,7 +243,8 @@ jobs:
       - setup_node_modules
       - run: | 
           cd compiler
-          yarn add playwright
+          pwd
+          yarn add playwright -W
       - run: |
           pwd
           yarn install --frozen-lockfile
