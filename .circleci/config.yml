@@ -247,6 +247,7 @@ jobs:
           pwd
           cd compiler
           yarn install
+          yarn playwright install
           yarn workspace playground test
       - run: | 
           pwd
