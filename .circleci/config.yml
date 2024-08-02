@@ -247,18 +247,23 @@ jobs:
           yarn add playwright -W
       - run: |
           pwd
+          cd compiler
           yarn install --frozen-lockfile
       - run: | 
           pwd
+          cd compiler
           npx playwright install --with-deps chromium
       - run: |
           pwd
+          cd compiler
           yarn install
       - run: |
           pwd
+          cd compiler
           yarn playwright install
       - run: | 
           pwd
+          cd compiler
           yarn workspace playground test
   
 # RUST COMPILER JOBS
